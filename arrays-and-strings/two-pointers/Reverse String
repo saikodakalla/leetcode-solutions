@@ -1,1 +1,12 @@
-
+class Solution:
+    def reverseString(self, s: List[str]) -> None:
+        left = 0 # left pointer initialization 
+        right = len(s) - 1 # right pointer initialization
+        
+        while left < right: 
+            s[left], s[right] = s[right], s[left] # swap elements at opposite indices
+            right -= 1 # change pointer value
+            left += 1 # change pointer value 
+           
+        
+        return s # return s when left = right or left > right 
