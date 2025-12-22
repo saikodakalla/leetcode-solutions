@@ -1,0 +1,17 @@
+class Solution:
+    def getAverages(self, nums: List[int], k: int) -> List[int]:
+        
+        n = len(nums) # length of array
+        div = 2*k + 1 # value to divide by to find average of subarray
+        prefix = [0] # starting off prefix array with 0
+        
+        for i in range(n): # creating prefix array
+            prefix.append(nums[i] + prefix[-1])
+            
+        avg = [-1 for x in nums] # -1 for all values to start 
+        for i in range(k, n - k): # for range where an average exists, using i - k >= 0 and i + k <= n as ranges
+                avg[i] = (prefix[i + k + 1] - prefix[i - k]) // div # set all values in these ranges to avg of subarray
+                
+        return avg # return array
+                
+                
