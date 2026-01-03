@@ -1,0 +1,14 @@
+class Solution:
+    def missingNumber(self, nums: List[int]) -> int:
+        seen = set() # create set 
+        for i in range(len(nums)):
+            seen.add(nums[i]) # add all numbers to set, allows for O(1) lookup in next for loop
+        
+        for i in range(len(seen) + 1): # for all numbers from 0 to len(seen) + 1 (number of elements in set)
+            if i not in seen: # if the index we are iterating on (0, 1, 2..) is not in the set of numbers 
+                return i # return that number as this number in the range 0 to n is not present 
+            
+            
+            
+        
+        
