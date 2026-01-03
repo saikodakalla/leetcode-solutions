@@ -1,0 +1,30 @@
+class Solution:
+    def countElements(self, arr: List[int]) -> int:
+        nums = set(arr) 
+        counter = 0 # start counter at 0
+            
+        for i in arr: # iterate over array to also account for duplicates, if iterating over set we only catch one instance of any duplicates
+            if i + 1 in nums: # now, use the set to perform O(1) lookup for if i + 1 exists
+                counter += 1 # append to counter if current value + 1 exists
+        
+        return counter
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+
+# solution that works only if original set is unqiue (my original solution when i assumed unique list of numbers)
+# improvements -> use set(arr) rather than manually adding to nums, shortens implementation. Also
+
+class Solution:
+    def countElements(self, arr: List[int]) -> int:
+        nums = set() 
+        counter = 0 # start counter at 0
+        
+        for i in range(len(arr)): # create set of all numbers in array, unique values
+            nums.add(arr[i])
+            
+        for i in nums: # iterate over set
+            if i + 1 in nums: # O(1) lookup
+                counter += 1 # append to counter if current value + 1 exists
+        
+        return counter
+                
