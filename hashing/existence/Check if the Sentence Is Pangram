@@ -1,0 +1,11 @@
+class Solution:
+    def checkIfPangram(self, sentence: str) -> bool:
+        seen = set() # create a set, better for this case as we are only checking existence not associated values 
+        for letter in sentence: 
+            seen.add(letter) # if letter already in set, no changes. if not in set, will be added. 
+            
+        if len(seen) == 26: # meaning the number of unique elements is 26, the total number of alphabets
+            return True 
+        else:
+            return False
+        
