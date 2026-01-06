@@ -1,0 +1,13 @@
+class Solution:
+    def areOccurrencesEqual(self, s: str) -> bool:
+        counts = defaultdict(int) # hash table
+        for c in s: # iterate over characters 
+            counts[c] += 1 # append for frequency at each character 
+        firstfrequency = counts[s[0]] # set variable equal to frequency of first character
+        for key, value in counts.items(): # loop through hashmap
+            if value != firstfrequency: # if any value is not equal to value of first character
+                return False # false
+        
+        return True # else true
+            
+        
