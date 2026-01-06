@@ -1,0 +1,21 @@
+class Solution:
+    def intersection(self, nums: List[List[int]]) -> List[int]:
+        counts = defaultdict(int) # create hashmap
+        ans = [] # answer list
+        for x in nums: # outer list
+            for num in x: # inner list  
+                counts[num] += 1 # update hashmap
+        
+        for key, value in counts.items(): # iterating over keys/values in hashmap
+            if value == len(nums): # if frequency = number of lists (so appears in every list)
+                ans.append(key) # append this key to the list
+        
+        return sorted(ans) # return the sorted list
+
+        
+        
+
+            
+
+            
+        
