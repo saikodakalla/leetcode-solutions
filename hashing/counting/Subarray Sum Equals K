@@ -1,0 +1,17 @@
+class Solution:
+    def subarraySum(self, nums: List[int], k: int) -> int:
+        counts = defaultdict(int)
+        counts[0] += 1 # empty prefix sum array
+        counter = 0 # answer counter
+
+        prefix = [nums[0]] # build prefix sum array
+        for i in range(1, len(nums)):
+            prefix.append(nums[i] + prefix[-1])
+        
+        for i in range(len(prefix)): 
+            if prefix[i] - k in counts: # if curr - k in hashmap
+                counter += counts[prefix[i] - k] # add # of ways i've already gotten that subarray
+            counts[prefix[i]] += 1 # add the new prefix array value
+        
+        return counter # answer 
+
