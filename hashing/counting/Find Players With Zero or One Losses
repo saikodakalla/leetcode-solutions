@@ -1,0 +1,24 @@
+class Solution:
+    def findWinners(self, matches: List[List[int]]) -> List[List[int]]:
+        losers = defaultdict(int) # create dictionary of losers
+        winners_set = set() # set of winners to avoid counting one winner several times
+        loserslst = [] # list of losers 
+        
+        for match in matches:
+            losers[match[1]] += 1 # count the number of losses each player has had
+        
+        for key in losers.keys(): 
+            if losers[key] == 1: # if a player lost once (only # of losses we want to filter for in our losers list)
+                loserslst.append(key) # append their player number
+            
+        for match in matches:
+            if match[0] not in losers: # if any player is not in the losses dictionary, meaning 0 losses 
+                winners_set.add(match[0]) # add their player number to the set of winners
+         
+        winners = list(winners_set) # turn the set into a list
+            
+        return [sorted(winners), sorted(loserslst)] # return sorted versions of both
+                
+            
+        
+        
