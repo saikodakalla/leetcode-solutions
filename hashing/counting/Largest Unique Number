@@ -1,0 +1,20 @@
+class Solution:
+    def largestUniqueNumber(self, nums: List[int]) -> int:
+        # idea: hashmap for occurences, largest num of occurences = 1
+        count = defaultdict(int) # counts frequency
+        potentialans = [] # list of all potential answers
+        
+        for num in nums:
+            count[num] += 1 # get hashmap of frequency
+            
+            
+        for key, value in count.items():
+            if count[key] == 1:
+                potentialans.append(key) # append all num in nums where only appears once 
+        
+        if len(potentialans) > 0: # if there is at least one number that appears only once
+            return max(potentialans) # return max of the list
+        else:
+            return -1 # if there is no unique element, return -1 as per question instructions
+            
+        
