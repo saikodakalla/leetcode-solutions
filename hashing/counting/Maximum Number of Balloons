@@ -1,0 +1,32 @@
+class Solution:
+    def maxNumberOfBalloons(self, text: str) -> int:
+        # balloon 
+        # 1 B, 1 A, 2 L's, 2 O's, 1 N - for every 1 A, B, N: 2 L, 0 t 
+        # find limiting letter in making full word
+        
+        count = defaultdict(int)
+        anslst = [] # list of number of words we can make per letter
+        
+        for c in text:
+            count[c] += 1 # create hashmap
+    
+        for c in "balon":
+            if c not in count:
+                return 0 # cant make a full balloon if a letter isnt in the hashmap
+           
+        for key, value in count.items():
+            if key == "b" or key == "a" or key == "n": # if only 1 needed to form balloon
+                anslst.append( value // 1) # find num of appearances
+            if key == "l" or key == "o": # if 2 needed to form balloon
+                anslst.append( value // 2 ) # find num of appearances allowing us to make a full word
+            else:
+                pass # if none of balloon, pass to next key in hashmap
+                
+            
+        return min(anslst) # return the minimum frequency
+                
+            
+        
+        
+            
+        
