@@ -1,0 +1,26 @@
+class Solution {
+public:
+    bool isAnagram(string s, string t) {
+    
+    if (s.length() != t.length()) { // check lengths at first
+        return false;
+    }
+
+    std::unordered_map<char, int> count; // create key:value pair to keep counts
+
+    for (char c: s) {
+        count[c]++;
+    }
+
+    for (char c: t){
+        if (!count.contains(c) || count[c] == 0) { // for each char in t, if not in count or freq = 0
+            return false; // return false
+        }
+        count[c]--; // decrement freq from counts afterwards if true to ensure correct frequency
+    }
+
+    return true;
+    
+
+    }
+};
