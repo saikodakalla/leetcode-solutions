@@ -1,0 +1,23 @@
+class Solution {
+public:
+    vector<vector<string>> groupAnagrams(vector<string>& strs) {
+        // brute force approach: O(n^2) with double nested loop
+        // sort each letter 
+        
+        std::unordered_map<std::string, std::vector<std::string>> anagrams; // map vector
+        std::vector<std::vector<std::string>> result; // result vector: only stores values of anagrams vector
+
+        for (int i = 0; i < strs.size(); ++i) { 
+            std::string sorted = strs[i]; // let sorted equal each strinng
+            std::sort(sorted.begin(), sorted.end()); // sort this string alphabetically
+            anagrams[sorted].push_back(strs[i]); // for the sorted key, push the original string to this
+        }
+        
+
+        for (auto& [key, value] : anagrams) { // for the key value pair of anagrams
+            result.push_back(value); // push all values to result vector
+        }
+
+        return result; // return result vector
+    }
+};
