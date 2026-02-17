@@ -1,0 +1,18 @@
+class Solution {
+public:
+    int firstUniqChar(string s) {
+        unordered_map<char, int> freq; // create key:value pair for character and integer
+
+        for (char c: s) { // iterate through and increment freq for each char by 1
+            freq[c]++;
+        }
+
+        for (int i = 0; i < s.size(); i++) {
+            if (freq[s[i]] == 1) { // if at any point in string the freq is 1 (aka unique)
+                return i; // return index
+            }
+        }
+
+        return -1;
+    }
+};
