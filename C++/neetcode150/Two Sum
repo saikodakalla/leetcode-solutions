@@ -1,0 +1,19 @@
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        std::unordered_map<int, int> prev; // key:value pair for num:index
+
+        for (int i = 0; i < nums.size(); ++i) { 
+            int need = target - nums[i]; // int to check inside map
+
+            if (prev.contains(need)) { // if contains the need 
+                return std::vector<int>{prev[need], i}; // return vector of first num index and second num index
+            } 
+
+            prev[nums[i]] = i; // if doesnt contain, set value of num at index i to equal the number i
+        }
+
+        return {}; // give return vector statement
+        
+    }
+};
