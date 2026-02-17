@@ -1,0 +1,20 @@
+class Solution {
+public:
+    bool hasDuplicate(vector<int>& nums) {
+        std::unordered_map<int, int> seen; // int, int key:value pairs
+
+        for (int i : nums) { // iterate over nums
+            seen[i]++;
+        }
+
+        for (auto& [key, value] : seen) { // iterate over key:value pairs
+            if (value != 1) {
+                return true;
+            } 
+        
+        }
+
+        return false;
+
+    }
+};
