@@ -1,0 +1,28 @@
+class Solution {
+public:
+    vector<int> topKFrequent(vector<int>& nums, int k) {
+        // logic: make unordered_map, then pairs, sort pairs, take top k pairs
+        std::unordered_map<int, int> numsfreq; // for map
+        std::vector<std::pair<int, int>> pairs; // use pairs data type inside vector to do sorting, can't sort on unordered_map
+        std::vector<int> ans; // answer vector
+
+        for (int i = 0; i < nums.size(); ++i) {
+            numsfreq[nums[i]]++; // create frequency table
+        }   
+
+        for (auto& [key, value] : numsfreq) {
+            pairs.push_back({key, value}); // several pairs within vector pairs
+        }
+
+        std::sort(pairs.begin(), pairs.end(), [](auto& a, auto& b) {
+            return a.second > b.second; // use lambda function with two objects to use comparator, empty capture list
+        });
+
+        for (int i = 0; i < k; ++i) {
+            ans.push_back(pairs[i].first); // take top k integers
+        }
+
+        return ans; return vector of top k integers
+       
+    }
+};
