@@ -1,0 +1,27 @@
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& numbers, int target) {
+        int left = 0;
+        int right = numbers.size() - 1;
+        std::vector<int> answer;
+
+        // standard two pointer approach, shrink window based on above/under target
+        while (left < right) {
+
+            if ((numbers[left] + numbers[right]) == target) {
+                answer.push_back(left + 1);
+                answer.push_back(right + 1);
+                return answer;
+            }
+            if ((numbers[left] + numbers[right]) > target) {
+                right -= 1;
+            }
+
+            if ((numbers[left] + numbers[right]) < target) {
+                left += 1;
+            }
+        }
+
+        return {-1, 1};
+    }
+};
