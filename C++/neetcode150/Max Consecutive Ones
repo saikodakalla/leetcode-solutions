@@ -1,0 +1,29 @@
+class Solution {
+public:
+    int findMaxConsecutiveOnes(vector<int>& nums) {
+        int counter = 0; // counter
+        std::vector<int> consecutives; // vector to store all counts of 1s 
+
+        for (int num : nums) {
+            if (num == 0) {
+                consecutives.push_back(counter);
+                counter = 0;
+            } else {
+                counter += 1;
+                consecutives.push_back(counter);
+            }
+
+        }
+
+        std::sort(consecutives.begin(), consecutives.end()); // sort algorithm
+
+        int length = consecutives.size();
+
+        if (length >= 1){
+            return consecutives[length - 1]; // return largest number of times we saw 1 in a row
+        } else {
+            return 0;
+        }
+
+    }
+};
