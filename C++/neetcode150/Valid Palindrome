@@ -1,0 +1,29 @@
+class Solution {
+public:
+    bool isPalindrome(string s) {
+        std::string possibleanswer;
+
+        for (char c : s) { 
+            if (isalnum(c)) { // if character is a number or letter
+                possibleanswer+=tolower(c); // standardize all in lowercase
+            }
+        
+        }
+        // just execute two pointer here onwards
+        int left = 0; 
+        int right = possibleanswer.length() - 1;
+
+        while (left < right) {
+            if (possibleanswer[left] != possibleanswer[right]){
+                return false;
+            }
+            left += 1;
+            right -= 1;
+        }
+        
+        return true;
+
+        
+        
+    }
+};
