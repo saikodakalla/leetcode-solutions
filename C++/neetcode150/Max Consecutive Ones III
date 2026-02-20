@@ -1,0 +1,28 @@
+class Solution {
+public:
+    int longestOnes(vector<int>& nums, int k) {
+        // idea: if we come across 0, add + 1 to counter, once counter > k, shorten window
+        int left = 0; // left pointer
+        int curr = 0; // current number of 0's flipped
+        int ans = 0; // answer
+
+        for (int right = 0; right < nums.size(); ++right) { // right iterator
+            if (nums[right] == 0) {
+                curr += 1;
+            }
+
+            while (curr > k) { // if we exceed k
+                if (nums[left] == 0) {
+                    curr -= 1;
+                    left += 1; // move left pointer, remove 1 from curr if left was a 0 
+                } else {
+                    left += 1; // else, just move left 1 and check if next is 0
+                }
+            }
+
+            ans = max(ans, right - left + 1); // at each value, recalculate max consecutive ones
+        }
+        
+        return ans; // return answer once looping is done
+    }
+};
