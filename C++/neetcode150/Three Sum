@@ -1,0 +1,49 @@
+class Solution {
+public:
+    vector<vector<int>> threeSum(vector<int>& nums) {
+        // nums[i] + nums[j] + nums[k] == 0;
+        // nums[i] = -nums[j] - nums[k];
+        // -nums[i] = nums[j] + nums[k]
+        // check if for nums at i, any other nums at j/k's negative's result in the nums at i?
+        // can use two pointers to find this 
+
+        std::sort(nums.begin(), nums.end());
+        std::vector<vector<int>> ans;
+
+        for (int i = 0; i < nums.size() - 2; ++i) { // nums.size() - 2 to so window has at least 2 more in it
+            int target = -nums[i]; 
+            int left = i + 1; // left pointer
+            int right = nums.size() - 1; // right pointer at end of window 
+
+            if (i > 0 && nums[i] == nums[i - 1]) { // if duplicate element, move onto next element
+                    continue;
+                }
+
+            while (left < right) {
+                if (nums[left] + nums[right] == target) { // if equal to target
+                    ans.push_back({nums[i], nums[left], nums[right]}); // push to vector
+                    left += 1; // move indices inwards 
+                    right -= 1;
+
+                    while (left < right && nums[left] == nums[left - 1]) { // if next left is duplicate, add more
+                        left += 1;
+                    }
+
+                    while (left < right && nums[right] == nums[right + 1]) { // if right is duplicate, remove it
+                        right -= 1;
+                    }
+
+                } else if (nums[left] + nums[right] > target) { // if sum is larger, reduce window size
+                    right -= 1;
+                } else {
+                    left += 1;
+                }
+
+            }
+
+        }
+
+        return ans;
+
+    }
+};
