@@ -1,0 +1,26 @@
+class Solution {
+public:
+    int longestConsecutive(vector<int>& nums) {
+
+        if (nums.empty()) {
+            return 0;
+        }
+        
+        int curr = 1; // sequence starts at first element
+        int best = 1; // best is 1 currently 
+
+        std::sort(nums.begin(), nums.end()); // sort vector
+        nums.erase(unique(nums.begin(), nums.end()), nums.end()); // remove duplicates
+
+        for (int i = 1; i < nums.size(); ++i) { // start at index 1 to check if index[0] + 1 = index[1]
+            if (nums[i] == nums[i - 1] + 1) { // if equal
+                curr += 1; // add 1 to current seq
+                best = max(curr, best); // best is max of current and the best so far (1)
+            } else {
+                curr = 1; // if not, leave/reassign current best sequence length to 1
+            } 
+        }
+        return best;
+        
+    }
+};
