@@ -1,0 +1,21 @@
+class Solution {
+public:
+    int maxArea(vector<int>& heights) {
+        // logic: area optimization problem combined with two pointers
+        int left = 0;
+        int right = heights.size() - 1;
+        int ans = 0;
+
+        while (left < right) {
+            int area = (right - left) * (min(heights[left], heights[right])); // calculate area
+            ans = max(area, ans); // update max
+            if (heights[left] < heights[right]) { // move pointers based on which is smaller
+                left += 1;
+            } else {
+                right -= 1;
+            }
+        }
+
+        return ans; 
+    }
+};
