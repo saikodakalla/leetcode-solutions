@@ -1,0 +1,37 @@
+class Solution {
+public:
+    bool isValid(string s) {
+        // for each closing, it must be right after or symmetrical distance from its own opening
+        // if opening -> push to stack
+        // if closing -> check if its equal to the char at top of stack
+        // if so, it is valid and pop the element from the stack
+        // if not, dont pop from stack
+        // if the stack isnt empty by the end, not every opening had a matching closing, so not valid paranthesis
+
+        std::stack<char> stack; 
+
+        for (char c : s) {
+            if (c == '(' || c == '{' || c == '[') {
+                stack.push(c);
+            } else {
+                if (stack.empty()) {
+                    return false; // as we have a closing without an opening
+                }
+
+                if (c == ')' && stack.top() == '(') {
+                    stack.pop();
+                } else if (c == '}' && stack.top() == '{') {
+                    stack.pop();
+                } else if (c == ']' && stack.top() == '[') {
+                    stack.pop();
+                } else {
+                    return false; 
+                }
+
+            }
+
+        }
+
+        return stack.empty();
+    }
+};
